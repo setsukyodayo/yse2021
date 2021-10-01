@@ -20,30 +20,30 @@ session_start();
 
 //⑤データベースへ接続し、接続情報を変数に保存する
 //⑥データベースで使用する文字コードを「UTF8」にする
-$db_name='azaiko_2021_yse';
-$db_host='localhost';
-$db_port='3306';
-$db_password='2021zaiko';
-$dsn="mysql:dbname={$db_name};host={$db_host};charset=utf8;port{$db_port}";
-try{
-	$pdo=new PDO($dsn,$db_user,$db_password);
-	$pdo->setAttribute(PDO::ATT_ERRMODE,PDO::ERRMODE_EXCEPTION);
-	$pdo->setAttribute(PDO::ATT_ERRMODE_PREPARES,false);
+// $db_name='azaiko_2021_yse';
+// $db_host='localhost';
+// $db_port='3306';
+// $db_password='2021zaiko';
+// $dsn="mysql:dbname={$db_name};host={$db_host};charset=utf8;port{$db_port}";
+// try{
+// 	$pdo=new PDO($dsn,$db_user,$db_password);
+// 	$pdo->setAttribute(PDO::ATT_ERRMODE,PDO::ERRMODE_EXCEPTION);
+// 	$pdo->setAttribute(PDO::ATT_ERRMODE_PREPARES,false);
 
-}catch (PDOxception $e){
-	echo "接続失敗:". $e->getMessage();
-	exit;
-}
+// }catch (PDOxception $e){
+// 	echo "接続失敗:". $e->getMessage();
+// 	exit;
+// }
 
-$=getBooksS
+// $=getBooksS
 
 //⑦書籍テーブルから書籍情報を取得するSQLを実行する。また実行結果を変数に保存する
-function getBooks($sql,$limit=20,$offset=0){
-	$sql="SELECT*FROM books";
-	$stmt=$pdo->$
+// function getBooks($sql,$limit=20,$offset=0){
+// 	$sql="SELECT*FROM books";
+// 	// $stmt=$pdo->$
 
-	return $books;
-}
+// 	// return $books;
+// }
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -100,7 +100,7 @@ function getBooks($sql,$limit=20,$offset=0){
 						</tr>
 					</thead>
 					<tbody>
-					<?php foreach ($books as $dook):?>
+						<!-- <?php foreach ($books as $dook):?>
 							
 							<tr id='book'>";
 						 	<td id='check'><input type='checkbox' name='books[]'value="./* ⑫IDを設定する */."></td>";
@@ -110,9 +110,7 @@ function getBooks($sql,$limit=20,$offset=0){
 						 	<td id='date'><?=$dook['salesDate']?></td>
 						 	<td id='price'><?=$dook['price']?></td>
 						 	<td id='stock'><?=$dook['stock']?></td>
-						
-						
-						<?php endforeach?>
+						<?php endforeach?> -->
 						<?php
 						//⑩SQLの実行結果の変数から1レコードのデータを取り出す。レコードがない場合はループを終了する。
 						// while($book=$stmt->fetch(PDO::FETCH_ASSOC)){
