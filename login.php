@@ -12,7 +12,7 @@
 	ログインしてください：ログインしていない状態で他のページに遷移した場合(ログイン画面に遷移し上記を表示)
 */
 //⑥セッションを開始する
-//
+session_start();
 //①名前とパスワードを入れる変数を初期化する
 $name='';
 $password='';
@@ -23,20 +23,18 @@ $password='';
 if (isset($_POST['decision']) && $_POST['decision'] == 1) {
 // 	/*
 // 	 * ③名前とパスワードが両方とも入力されているかを判定する。
-	if (!empty($_POST['name'])&& !empty($_POST['password'])){
-		if ('' == $example_input){
-	}
-	}
-
+	
 // 	 * 入力されていた場合はif文の中の処理を行う。
 // 	 */
-	if (!empty($_POST["name"]) && !empty($_POST["password"])) {
+	if ($_POST['name'] && $_POST['pass']) {
 // 		//④名前とパスワードにPOSTで送られてきた名前とパスワードを設定する
+		$name = $_POST['name'];
+		$password = $_POST['pass'];
 		
 		
-// 	} else {
+ 	} else {
 //⑤名前かパスワードが入力されていない場合は、「名前かパスワードが未入力です」という文言をメッセージを入れる変数に設定する// 		
-	
+		$message = "かかかが未入力です" ;
 	}
 }
 
