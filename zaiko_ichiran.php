@@ -118,7 +118,7 @@ function getBooks($sql,$limit=20,$offset=0){
 						//⑩SQLの実行結果の変数から1レコードのデータを取り出す。レコードがない場合はループを終了する。
 						// while($book=$stmt->fetch(PDO::FETCH_ASSOC)){
 						// 	//⑪extract変数を使用し、1レコードのデータを渡す。
-
+							//必須
 						// 	echo "<tr id='book'>";
 						// 	// echo "<td id='check'><input type='checkbox' name='books[]'value="./* ⑫IDを設定する */."></td>";
 						// 	echo "<td id='id'>/* ⑬IDを表示する */</td>";
