@@ -48,6 +48,7 @@ try{
 // if(/* ⑧の処理を行う */){
 // 	//⑨SESSIONの「success」に「入荷する商品が選択されていません」と設定する。
 // 	//⑩在庫一覧画面へ遷移する。
+	header("Location:zaiko_ichiran.php");
 // }
 
 function getId($id,$con){
