@@ -25,9 +25,10 @@ $db_host='localhost';
 $db_port='3306';
 $db_password='2021zaiko';
 $db_user='zaiko2021_yse';
-$dsn='mysql:dbname={$db_name};host={$db_host};charset=utf8';
+// $dsn='mysql:dbname={$db_name};host={$db_host};charset=utf8';
 
 $dsn="mysql:dbname={$db_name};host={$db_host};charset=utf8;port{$db_port}";
+
 try{
 	$pdo=new PDO($dsn,$db_user,$db_password);
 	// $pdo->setAttribute(PDO::ATT_ERRMODE,PDO::ERRMODE_EXCEPTION);
@@ -48,7 +49,10 @@ try{
 // 	// return $books;
 // }
 $sql="SELECT*FROM books";
-$books = $pdo->query($sql);
+// $books = $pdo->query($sql);
+$books = $pdo->prepare('select * from books');
+$books->execute();
+
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -105,7 +109,7 @@ $books = $pdo->query($sql);
 						</tr>
 					</thead>
 					<tbody>
-						<?php foreach ($books as $dook):?>
+						<?php foreach ($books->fetchAll() as $dook):?>
 							
 							<tr id='book'>";
 						 	<td id='check'><input type='checkbox' name='books[]'value="./* ⑫IDを設定する */."></td>";
