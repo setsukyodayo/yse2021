@@ -39,16 +39,17 @@ try{
 	$pdo->setAttribute(PDO::ATTR_ERRMODE,PDO:: ERRMODE_EXCEPTION) ;
 	$pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES,false) ;
 }catch (PDOException $e){
-	echo"接綕失敗:".$e-›getMessage();
+	echo"接続失敗:".$e->getMessage();
 	exit;
 }
 
 //⑧POSTの「books」の値が空か判定する。空の場合はif文の中に入る。
-// if(/* ⑧の処理を行う */){
-// 	//⑨SESSIONの「success」に「入荷する商品が選択されていません」と設定する。
-// 	//⑩在庫一覧画面へ遷移する。
+ if($_POST['books']=null){
+ 	//⑨SESSIONの「success」に「入荷する商品が選択されていません」と設定する。
+ 	//⑩在庫一覧画面へ遷移する。
+	$_POST['success']='入荷する商品が選択されていません';
 	header("Location:zaiko_ichiran.php");
-// }
+ }
 
 function getId($id,$con){
 	/* 
