@@ -32,7 +32,7 @@ $dsn="mysql:dbname={$db_name};host={$db_host};charset=utf8;port{$db_port}";
 try{
 	$pdo=new PDO($dsn,$db_user,$db_password);
 	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-	// $pdo->setAttribute(PDO::ATTR_ERRMODE_PREPARES,false);
+	$pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);
 
 }catch (PDOException $e){
 	echo "接続失敗:". $e->getMessage();
@@ -50,7 +50,9 @@ try{
 // }
 $sql="SELECT*FROM books";
 // $books = $pdo->query($sql);
-$books = $pdo->prepare('select * from books');
+// $books = $pdo->prepare('select * from books');
+// $books->query("set names utf8")
+$books = $pdo->prepare('SELECT * FROM books');
 $books->execute();
 
 ?>
@@ -109,16 +111,16 @@ $books->execute();
 						</tr>
 					</thead>
 					<tbody>
-						<?php foreach ($books->fetchAll() as $dook):?>
+						<?php foreach ($books->fetchAll(PDO::FETCH_ASSOC) as $book):?>
 							
-							<tr id='book'>";
-						 	<td id='check'><input type='checkbox' name='books[]'value="./* ⑫IDを設定する */."></td>";
-						 	<td id='id'><?=$dook['id']?></td>
-						 	<td id='title'><?=$dook['title']?></td>
-						 	<td id='author'><?=$dook['author']?></td>
-						 	<td id='date'><?=$dook['salesDate']?></td>
-						 	<td id='price'><?=$dook['price']?></td>
-						 	<td id='stock'><?=$dook['stock']?></td>
+							<tr id='book'>
+						 	<td id='check'><input type='checkbox' name='books[]'value="./* ⑫IDを設定する */."></td>
+						 	<td id='id'><?=$book['id']?></td>
+						 	<td id='title'><?=$book['title']?></td>
+						 	<td id='author'><?=$book['author']?></td>
+						 	<td id='date'><?=$book['salesDate']?></td>
+						 	<td id='price'><?=$book['price']?></td>
+						 	<td id='stock'><?=$book['stock']?></td>
 						<?php endforeach?>
 						<?php
 						//⑩SQLの実行結果の変数から1レコードのデータを取り出す。レコードがない場合はループを終了する。
