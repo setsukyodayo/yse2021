@@ -31,10 +31,10 @@ $dsn="mysql:dbname={$db_name};host={$db_host};charset=utf8;port{$db_port}";
 
 try{
 	$pdo=new PDO($dsn,$db_user,$db_password);
-	// $pdo->setAttribute(PDO::ATT_ERRMODE,PDO::ERRMODE_EXCEPTION);
-	// $pdo->setAttribute(PDO::ATT_ERRMODE_PREPARES,false);
+	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	// $pdo->setAttribute(PDO::ATTR_ERRMODE_PREPARES,false);
 
-}catch (PDOxception $e){
+}catch (PDOException $e){
 	echo "接続失敗:". $e->getMessage();
 	exit;
 }
