@@ -13,10 +13,11 @@
 //①セッションを開始する
 session_start();
 //②SESSIONの「login」フラグがfalseか判定する。「login」フラグがfalseの場合はif文の中に入る。
-// if (/* ②の処理を書く */){
+if (isset($_SESSION['login'])==false){
 // 	//③SESSIONの「error2」に「ログインしてください」と設定する。
 // 	//④ログイン画面へ遷移する。
-// }
+// header('Location: login.php');
+}
 
 //⑤データベースへ接続し、接続情報を変数に保存する
 //⑥データベースで使用する文字コードを「UTF8」にする
@@ -77,7 +78,9 @@ $books->execute();
 				 * 設定されていた場合はif文の中に入る。
 				 */ 
 				// if(/* ⑧の処理を書く */){
+					// if(isset($_SESSION['success'])){
 				// 	//⑨SESSIONの「success」の中身を表示する。
+				// echo ($success);
 				// }
 				?>
 			</div>
