@@ -44,7 +44,7 @@ if (isset($name)) {
 		//⑨SESSIONに名前を設定し、
 		$_SESSION['name'] = $name;
 		//SESSIONの「login」フラグをtrueにする
-		
+		$_SESSION['login'] = true;
 		//⑩在庫一覧画面へ遷移する・zaiko_ichiran.phpへ
 		header('Location: zaiko_ichiran.php');
 	}else{
