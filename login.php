@@ -56,7 +56,7 @@ if (isset($name)) {
 // if (/* ⑫の処理を書く */) {
 if(isset($_SESSION['error2'])){
 // 	//⑬SESSIONの「error2」の値をエラーメッセージを入れる変数に設定する
-	// ??
+	$errormessage = $_SESSION['error2']; 
 // 	//⑭SESSIONの「error2」にnullを入れる。
 	$_SESSION['error2'] = null;
 }
@@ -74,9 +74,10 @@ if(isset($_SESSION['error2'])){
 		<?php
 		//⑮エラーメッセージの変数に入っている値を表示する
 		// echo "<div id='error'>", /* ⑮の変数を書く */, "</div>";
-		
+		echo "<div id='error'>",@$errormessage. "</div>";
 		//⑯メッセージの変数に入っている値を表示する
 		// echo "<div id='msg'>", /* ⑯の変数を書く */, "</div>";
+		echo "<div id='msg'>",@$message. "</div>";
 		?>
 		<form action="login.php" method="post" id="log">
 			<p>
