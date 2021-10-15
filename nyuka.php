@@ -34,20 +34,25 @@ $_SESSION['login'];
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //⑥データベースへ接続し、接続情報を変数に保存する
 //⑦データベースで使用する文字コードを「UTF8」にする
-$db_name ='zaiko2021_yse';
+
+
+$db_name='zaiko2021_yse';
 $db_host='localhost';
 $db_port='3306';
+$db_password='2021zaiko';
 $db_user='zaiko2021_yse';
-$db_password = '2021zaiko';
-$dsn="mysql:dbname=($db_name }; host=($db_host}; charset=utf8; port=($db_port}";
+$dsn="mysql:dbname={$db_name};host={$db_host};charset=utf8;port{$db_port}";
+
 try{
-	$pdo=new PDO($dsn, $db_user, $db_password);
-	$pdo->setAttribute(PDO::ATTR_ERRMODE,PDO:: ERRMODE_EXCEPTION) ;
-	$pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES,false) ;
+	$pdo=new PDO($dsn,$db_user,$db_password);
+	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	$pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);
+
 }catch (PDOException $e){
-	echo"接続失敗:".$e->getMessage();
+	echo "接続失敗:". $e->getMessage();
 	exit;
 }
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -140,10 +145,10 @@ function getId($id,$con){
 						foreach($_POST['books' ]as $book_id)//⑮POSTの「books」から一つずつ値を取り出し、変数に保存する。
 						{	
 							$book=getId($book_id,$pdo);// ⑯「getId」関数を呼び出し、変数に戻り値を入れる。その際引数に⑮の処理で取得した値と⑥のDBの接続情報を渡す。
-						
+						//⑰ ⑯の戻り値からidを取り出し、設定する・//
     					
 					?>
-					/*⑰ ⑯の戻り値からidを取り出し、設定する*/;
+					
 					<input type="hidden" value="<?php echo $book;?>" name="books[]">
 					<tr>
 						<td><?php echo	$book["book_name"];?></td>
@@ -154,6 +159,7 @@ function getId($id,$con){
 						<td><?php echo	$book["in"];?></td> 
 						<td><input type='text' name='stock[]' size='5' maxlength='11' required></td>
 					</tr>
+
 					<?php
 					 }
 					?>
