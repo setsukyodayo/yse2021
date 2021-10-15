@@ -13,25 +13,44 @@
  * ①session_status()の結果が「PHP_SESSION_NONE」と一致するか判定する。
  * 一致した場合はif文の中に入る。
  */
-if (/* ①の処理を行う */) {
-	//②セッションを開始する
-}
+// if (/* ①の処理を行う */) {
+// 	//②セッションを開始する
+// }
 
 //③SESSIONの「login」フラグがfalseか判定する。「login」フラグがfalseの場合はif文の中に入る。
-if (/* ③の処理を書く */){
+if (empty($_SESSION['login'])){/* ③の処理を書く */
 	//④SESSIONの「error2」に「ログインしてください」と設定する。
+	$_SESSION['error2']='ログインして下さい。';
 	//⑤ログイン画面へ遷移する。
+	header('Location: login.php');
 }
 
 //⑥データベースへ接続し、接続情報を変数に保存する
 
 //⑦データベースで使用する文字コードを「UTF8」にする
+$db_name='zaiko2021_yse';
+$db_host='localhost';
+$db_port='3306';
+$db_password='2021zaiko';
+$db_user='zaiko2021_yse';
+// $dsn='mysql:dbname={$db_name};host={$db_host};charset=utf8';
 
-//⑧POSTの「books」の値が空か判定する。空の場合はif文の中に入る。
-if(/* ⑧の処理を行う */){
-	//⑨SESSIONの「success」に「出荷する商品が選択されていません」と設定する。
-	//⑩在庫一覧画面へ遷移する。
+$dsn="mysql:dbname={$db_name};host={$db_host};charset=utf8;port{$db_port}";
+
+try{
+	$pdo=new PDO($dsn,$db_user,$db_password);
+	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	$pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);
+
+}catch (PDOException $e){
+	echo "接続失敗:". $e->getMessage();
+	exit;
 }
+//⑧POSTの「books」の値が空か判定する。空の場合はif文の中に入る。
+// if(/* ⑧の処理を行う */){
+// 	//⑨SESSIONの「success」に「出荷する商品が選択されていません」と設定する。
+// 	//⑩在庫一覧画面へ遷移する。
+// }
 
 function getId($id,$con){
 	/* 
@@ -41,6 +60,10 @@ function getId($id,$con){
 	 */
 
 	//⑫実行した結果から1レコード取得し、returnで値を返す。
+
+
+
+// return $row;
 }
 ?>
 <!DOCTYPE html>
@@ -74,9 +97,9 @@ function getId($id,$con){
 		 * ⑬SESSIONの「error」にメッセージが設定されているかを判定する。
 		 * 設定されていた場合はif文の中に入る。
 		 */ 
-		if(/* ⑬の処理を書く */){
-			//⑭SESSIONの「error」の中身を表示する。
-		}
+		// if(/* ⑬の処理を書く */){
+		// 	//⑭SESSIONの「error」の中身を表示する。
+		// }
 		?>
 		</div>
 		<div id="center">
@@ -96,11 +119,22 @@ function getId($id,$con){
 				/*
 				 * ⑮POSTの「books」から一つずつ値を取り出し、変数に保存する。
 				 */
-				foreach(/* ⑮の処理を書く */){
+				foreach($_POST['books'] as $book_id){
 					// ⑯「getId」関数を呼び出し、変数に戻り値を入れる。その際引数に⑮の処理で取得した値と⑥のDBの接続情報を渡す。
+				$book=getId($bood_id,$pdo);
 				?>
-				<input type="hidden" value="<?php echo	/* ⑰ ⑯の戻り値からidを取り出し、設定する */;?>" name="books[]">
+				<!-- <input type="hidden" value="<?php echo	/* ⑰ ⑯の戻り値からidを取り出し、設定する */;?>" name="books[]"> -->
 				<tr>
+				<!-- <td><?= ?></td> -->
+				<td id='id'><?=$book['id']?></td>
+				<td id='title'><?=$book['title']?></td>
+				<td id='author'><?=$book['author']?></td>
+				<td id='date'><?=$book['salesDate']?></td>
+				<td id='price'><?=$book['price']?></td>
+				<td id='stock'><?=$book['stock']?></td>
+
+
+
 					<td><?php echo	/* ⑱ ⑯の戻り値からidを取り出し、表示する */;?></td>
 					<td><?php echo	/* ⑲ ⑯の戻り値からtitleを取り出し、表示する */;?></td>
 					<td><?php echo	/* ⑳ ⑯の戻り値からauthorを取り出し、表示する */;?></td>
