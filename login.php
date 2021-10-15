@@ -77,7 +77,7 @@ if(isset($_SESSION['error2'])){
 		echo "<div id='error'>",@$errormessage. "</div>";
 		//⑯メッセージの変数に入っている値を表示する
 		// echo "<div id='msg'>", /* ⑯の変数を書く */, "</div>";
-		echo "<div id='msg'>",@$message. "</div>";
+		//echo "<div id='msg'>",@$message. "</div>";
 		?>
 		<form action="login.php" method="post" id="log">
 			<p>
