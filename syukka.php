@@ -61,13 +61,13 @@ function getId($id,$con){
 	 * SQLの実行結果を変数に保存する。
 	 */
 	$sql="SELECT*FROM books";
-	$books = $pdo->prepare('SELECT * FROM books　WHERE id=$id');
+	$books = $con->prepare('SELECT * FROM books WHERE id=$id');
 	$books->execute();
 	//⑫実行した結果から1レコード取得し、returnで値を返す。
+	$id=$books;
 
 
-
-// return $row;
+return $id;
 }
 ?>
 <!DOCTYPE html>
