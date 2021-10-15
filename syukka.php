@@ -25,6 +25,7 @@ if (empty($_SESSION['login'])){/* ③の処理を書く */
 	$_SESSION['error2']='ログインして下さい。';
 	//⑤ログイン画面へ遷移する。
 	header('Location: login.php');
+	exit;
 }
 
 //⑥データベースへ接続し、接続情報を変数に保存する
@@ -48,6 +49,7 @@ try{
 //⑧POSTの「books」の値が空か判定する。空の場合はif文の中に入る。
 if(empty($_POST['books'])){/* ⑧の処理を行う */
 // 	//⑨SESSIONの「success」に「出荷する商品が選択されていません」と設定する。
+$_SESSION['success']="出荷する商品が選択されていません";
 // 	//⑩在庫一覧画面へ遷移する。
 header('Location: zaiko_ichiran.php');
 }
@@ -101,6 +103,10 @@ function getId($id,$con){
 		 */ 
 		// if(/* ⑬の処理を書く */){
 		// 	//⑭SESSIONの「error」の中身を表示する。
+		if($_SESSION["error"]=!null)
+			{
+				echo $_SESSION["error"];
+			}
 		// }
 		?>
 		</div>
@@ -125,9 +131,8 @@ function getId($id,$con){
 					// ⑯「getId」関数を呼び出し、変数に戻り値を入れる。その際引数に⑮の処理で取得した値と⑥のDBの接続情報を渡す。
 				$book=getId($bood_id,$pdo);
 				?>
-				<!-- <input type="hidden" value="<?php echo	/* ⑰ ⑯の戻り値からidを取り出し、設定する */;?>" name="books[]"> -->
+				<!-- <input type="hidden" value="<?php echo	"a"/* ⑰ ⑯の戻り値からidを取り出し、設定する */;?>" name="books[]"> -->
 				<tr>
-				<!-- <td><?= ?></td> -->
 				<td id='id'><?=$book['id']?></td>
 				<td id='title'><?=$book['title']?></td>
 				<td id='author'><?=$book['author']?></td>
@@ -137,12 +142,12 @@ function getId($id,$con){
 
 
 
-					<td><?php echo	/* ⑱ ⑯の戻り値からidを取り出し、表示する */;?></td>
-					<td><?php echo	/* ⑲ ⑯の戻り値からtitleを取り出し、表示する */;?></td>
-					<td><?php echo	/* ⑳ ⑯の戻り値からauthorを取り出し、表示する */;?></td>
-					<td><?php echo	/* ㉑ ⑯の戻り値からsalesDateを取り出し、表示する */;?></td>
-					<td><?php echo	/* ㉒ ⑯の戻り値からpriceを取り出し、表示する */;?></td>
-					<td><?php echo	/* ㉓ ⑯の戻り値からstockを取り出し、表示する */;?></td>
+					<td><?php echo	"a"/* ⑱ ⑯の戻り値からidを取り出し、表示する */;?></td>
+					<td><?php echo	"a"/* ⑲ ⑯の戻り値からtitleを取り出し、表示する */;?></td>
+					<td><?php echo	"a"/* ⑳ ⑯の戻り値からauthorを取り出し、表示する */;?></td>
+					<td><?php echo	"a"/* ㉑ ⑯の戻り値からsalesDateを取り出し、表示する */;?></td>
+					<td><?php echo	"a"/* ㉒ ⑯の戻り値からpriceを取り出し、表示する */;?></td>
+					<td><?php echo	"a"/* ㉓ ⑯の戻り値からstockを取り出し、表示する */;?></td>
 					<td><input type='text' name='stock[]' size='5' maxlength='11' required></td>
 				</tr>
 				<?php
