@@ -64,10 +64,10 @@ function getId($id,$con){
 	$books = $con->prepare('SELECT * FROM books WHERE id=$id');
 	$books->execute();
 	//⑫実行した結果から1レコード取得し、returnで値を返す。
-	$id=$books;
 
 
-return $id;
+
+// return $row;
 }
 ?>
 <!DOCTYPE html>
