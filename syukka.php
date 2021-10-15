@@ -15,6 +15,7 @@
  */
 // if (/* ①の処理を行う */) {
 // 	//②セッションを開始する
+session_start();
 // }
 
 //③SESSIONの「login」フラグがfalseか判定する。「login」フラグがfalseの場合はif文の中に入る。
@@ -26,15 +27,12 @@ if (empty($_SESSION['login'])){/* ③の処理を書く */
 }
 
 //⑥データベースへ接続し、接続情報を変数に保存する
-
 //⑦データベースで使用する文字コードを「UTF8」にする
 $db_name='zaiko2021_yse';
 $db_host='localhost';
 $db_port='3306';
 $db_password='2021zaiko';
 $db_user='zaiko2021_yse';
-// $dsn='mysql:dbname={$db_name};host={$db_host};charset=utf8';
-
 $dsn="mysql:dbname={$db_name};host={$db_host};charset=utf8;port{$db_port}";
 
 try{
@@ -47,10 +45,11 @@ try{
 	exit;
 }
 //⑧POSTの「books」の値が空か判定する。空の場合はif文の中に入る。
-// if(/* ⑧の処理を行う */){
+if(empty($_POST['books'])){/* ⑧の処理を行う */
 // 	//⑨SESSIONの「success」に「出荷する商品が選択されていません」と設定する。
 // 	//⑩在庫一覧画面へ遷移する。
-// }
+header('Location: zaiko_ichiran.php');
+}
 
 function getId($id,$con){
 	/* 
