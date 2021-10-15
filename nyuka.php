@@ -16,10 +16,11 @@
  * 一致した場合はif文の中に入る。
 */
 if (session_status()==PHP_SESSION_NONE) {
+	$_SESSION["success"]="";
 	session_start();
 }
 
-$_SESSION['login'];
+
  if (empty($_SESSION['login'])||$_SESSION['login']==false){
 	$_SESSION['error2']="ログインしてください。";
 	header("Location:login.php");
@@ -72,9 +73,6 @@ try{
  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-
-
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function getId($id,$con){
 	/* 
@@ -82,8 +80,16 @@ function getId($id,$con){
 	 * その際にWHERE句でメソッドの引数の$idに一致する書籍のみ取得する。
 	 * SQLの実行結果を変数に保存する。
 	 */
-
 	//⑫実行した結果から1レコード取得し、returnで値を返す。
+	$pdo=new PDO("mysql:host=localhost;dbname=zaiko2021_yse;charset=utf8;","zaiko2021_yse","2021zaiko");
+	$pdos=$pdo->query("SELECT*FROM books where id =$id");
+
+	while($re=$pdos->fetch())
+	{
+		return $re;
+	}
+
+
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ?>
@@ -142,22 +148,22 @@ function getId($id,$con){
 						</tr>
 					</thead>
 					<?php 
-						foreach($_POST['books' ]as $book_id)//⑮POSTの「books」から一つずつ値を取り出し、変数に保存する。
+						foreach($_POST['books' ] as $book_id)//⑮POSTの「books」から一つずつ値を取り出し、変数に保存する。
 						{	
-							$book=getId($book_id,$pdo);// ⑯「getId」関数を呼び出し、変数に戻り値を入れる。その際引数に⑮の処理で取得した値と⑥のDBの接続情報を渡す。
+							$book=getId($book_id);// ⑯「getId」関数を呼び出し、変数に戻り値を入れる。その際引数に⑮の処理で取得した値と⑥のDBの接続情報を渡す。
 						//⑰ ⑯の戻り値からidを取り出し、設定する・//
     					
 					?>
 					
 					<input type="hidden" value="<?php echo $book;?>" name="books[]">
-					<tr>
-						<td><?php echo	$book["book_name"];?></td>
+					<tr>[
+						<td><?php echo	$book["id"];?></td>
+						<td><?php echo	$book["title"];?></td>
 						<td><?php echo	$book["author"];?></td>
 						<td><?php echo	$book["salesDate"];?></td>
-						<td><?php echo	$book["itemPrice"];?></td>
-						<td><?php echo	$book["stock"];?></td>
-						<td><?php echo	$book["in"];?></td> 
-						<td><input type='text' name='stock[]' size='5' maxlength='11' required></td>
+						<td><?php echo	$book["price"];?></td>
+						<td><?php echo	$book["stock"];?></td> 
+						<td><input type='text' name='stock]' size='5' maxlength='11' required></td>
 					</tr>
 
 					<?php
