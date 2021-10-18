@@ -118,7 +118,7 @@ $books->execute();
 						<?php foreach ($books->fetchAll(PDO::FETCH_ASSOC) as $book):?>
 							
 							<tr id='book'>
-						 	<td id='check'><input type='checkbox' name='books[]'value="./* ⑫IDを設定する */."></td>
+						 	<td id='check'><input type='checkbox' name='books[]'value=<?=$book['id']?>></td>
 						 	<td id='id'><?=$book['id']?></td>
 						 	<td id='title'><?=$book['title']?></td>
 						 	<td id='author'><?=$book['author']?></td>
