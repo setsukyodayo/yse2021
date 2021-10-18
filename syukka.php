@@ -60,10 +60,12 @@ function getId($id,$con){//,$total
 	 * その際にWHERE句でメソッドの引数の$idに一致する書籍のみ取得する。
 	 * SQLの実行結果を変数に保存する。
 	 */
-	$sql="SELECT*FROM books";
-	// $sql="UPDATE books SET stock={$total} WHERE id={$id}";
-	$books = $con->prepare('SELECT * FROM books WHERE id=$id');
-	$books->execute();
+	// $sql="SELECT*FROM books";
+	// // $sql="UPDATE books SET stock={$total} WHERE id={$id}";
+	// $books = $con->prepare('SELECT * FROM books WHERE id=$id');
+	// $books->execute();
+	$sql="SELECT*FROM books WHERE id={$id}";
+	return $con->query($sql)->fetch(PDO::FETCH_ASSOC);
 	// $con->query($spl);
 	// return $
 	//⑫実行した結果から1レコード取得し、returnで値を返す。
@@ -132,10 +134,12 @@ function getId($id,$con){//,$total
 				 */
 				foreach($_POST['books'] as $book_id){
 					// ⑯「getId」関数を呼び出し、変数に戻り値を入れる。その際引数に⑮の処理で取得した値と⑥のDBの接続情報を渡す。
-				$book=getId($bood_id,$pdo);
+				$book=getId($book_id,$pdo);
 				?>
 				<!-- <input type="hidden" value="<?php echo	"a"/* ⑰ ⑯の戻り値からidを取り出し、設定する */;?>" name="books[]"> -->
 				<tr>
+				<tr id='book'>
+				<td id='check'><input type='checkbox' name='books[]'value=<?=$book['id']?>></td>
 				<td id='id'><?=$book['id']?></td>
 				<td id='title'><?=$book['title']?></td>
 				<td id='author'><?=$book['author']?></td>
@@ -145,12 +149,12 @@ function getId($id,$con){//,$total
 
 
 
-					<td><?php echo	"a"/* ⑱ ⑯の戻り値からidを取り出し、表示する */;?></td>
+					<!-- <td><?php echo	"a"/* ⑱ ⑯の戻り値からidを取り出し、表示する */;?></td>
 					<td><?php echo	"a"/* ⑲ ⑯の戻り値からtitleを取り出し、表示する */;?></td>
 					<td><?php echo	"a"/* ⑳ ⑯の戻り値からauthorを取り出し、表示する */;?></td>
 					<td><?php echo	"a"/* ㉑ ⑯の戻り値からsalesDateを取り出し、表示する */;?></td>
 					<td><?php echo	"a"/* ㉒ ⑯の戻り値からpriceを取り出し、表示する */;?></td>
-					<td><?php echo	"a"/* ㉓ ⑯の戻り値からstockを取り出し、表示する */;?></td>
+					<td><?php echo	"a"/* ㉓ ⑯の戻り値からstockを取り出し、表示する */;?></td> -->
 					<td><input type='text' name='stock[]' size='5' maxlength='11' required></td>
 				</tr>
 				<?php
