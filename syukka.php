@@ -54,15 +54,18 @@ $_SESSION['success']="出荷する商品が選択されていません";
 header('Location: zaiko_ichiran.php');
 }
 
-function getId($id,$con){
+function getId($id,$con){//,$total
 	/* 
 	 * ⑪書籍を取得するSQLを作成する実行する。
 	 * その際にWHERE句でメソッドの引数の$idに一致する書籍のみ取得する。
 	 * SQLの実行結果を変数に保存する。
 	 */
 	$sql="SELECT*FROM books";
+	// $sql="UPDATE books SET stock={$total} WHERE id={$id}";
 	$books = $con->prepare('SELECT * FROM books WHERE id=$id');
 	$books->execute();
+	// $con->query($spl);
+	// return $
 	//⑫実行した結果から1レコード取得し、returnで値を返す。
 
 
