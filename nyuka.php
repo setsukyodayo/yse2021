@@ -73,7 +73,7 @@ try{
  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function getId($id,$con){
 	/* 
 	 * ⑪書籍を取得するSQLを作成する実行する。
@@ -81,9 +81,8 @@ function getId($id,$con){
 	 * SQLの実行結果を変数に保存する。
 	 */
 	//⑫実行した結果から1レコード取得し、returnで値を返す。
-	$st = $con->query("SELECT * FROM books WHERE id ={$id}");
-	
-	return $stmt->fetch(PDO::FETCH_ASSOC);
+	$sql="SELECT * FROM books WHERE id ={$id}";
+	return  $con->query($sql)->fetch(PDO::FETCH_ASSOC);
 
 
 }
@@ -153,12 +152,12 @@ function getId($id,$con){
 					
 					<input type="hidden" value="<?php echo $book['id'];?>" name="books[]">
 					<tr>
-						<td><?php echo	$book['id'];?></td>
-						<td><?php echo	$book['title'];?></td>
-						<td><?php echo	$book['author'];?></td>
-						<td><?php echo	$book['salesDate'];?></td>
-						<td><?php echo	$book['price'];?></td>
-						<td><?php echo	$book['stock'];?></td> 
+						<td><?php echo	$book["id"];?></td>
+						<td><?php echo	$book["title"];?></td>
+						<td><?php echo	$book["author"];?></td>
+						<td><?php echo	$book["salesDate"];?></td>
+						<td><?php echo	$book["price"];?></td>
+						<td><?php echo	$book["stock"];?></td> 
 						<td><input type='text' name='stock[]' size='5' maxlength='11' required></td>
 					</tr>
 
