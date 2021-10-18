@@ -81,13 +81,7 @@ function getId($id,$con){
 	 * SQLの実行結果を変数に保存する。
 	 */
 	//⑫実行した結果から1レコード取得し、returnで値を返す。
-	$pdo=new PDO("mysql:host=localhost;dbname=zaiko2021_yse;charset=utf8;","zaiko2021_yse","2021zaiko");
-	$pdos=$pdo->query("SELECT*FROM books where id =$id");
-
-	while($re=$pdos->fetch())
-	{
-		return $re;
-	}
+	
 
 
 }
