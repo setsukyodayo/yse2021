@@ -52,6 +52,7 @@ if(empty($_POST['books'])){/* ⑧の処理を行う */
 $_SESSION['success']="出荷する商品が選択されていません";
 // 	//⑩在庫一覧画面へ遷移する。
 header('Location: zaiko_ichiran.php');
+exit;
 }
 
 function getId($id,$con){//,$total
@@ -154,7 +155,7 @@ function getId($id,$con){//,$total
 
 
 
-				<td><?php echo	$book["id"];?></td>
+						<td><?php echo	$book["id"];?></td>
 						<td><?php echo	$book["title"];?></td>
 						<td><?php echo	$book["author"];?></td>
 						<td><?php echo	$book["salesDate"];?></td>
