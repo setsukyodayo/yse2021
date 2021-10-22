@@ -108,7 +108,11 @@ function getId($id,$con){//,$total
 		 */ 
 		// if(/* ⑬の処理を書く */){
 		// 	//⑭SESSIONの「error」の中身を表示する。
-		if($_SESSION["error"]=!null)
+		// if($_SESSION["error"]=!null)
+		// 	{
+		// 		echo $_SESSION["error"];
+		// 	}
+			if(empty($_SESSION["error"]))
 			{
 				echo $_SESSION["error"];
 			}
