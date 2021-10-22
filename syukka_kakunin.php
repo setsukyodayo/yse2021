@@ -121,14 +121,14 @@ if(isset($_POST['add'])){
 		//㉗ ㉖で取得した書籍の情報の「stock」と、㉔の変数を元にPOSTの「stock」から値を取り出して書籍情報の「stock」から値を引いた値を変数に保存する。
 		//㉘「updateByid」関数を呼び出す。その際に引数に㉕の処理で取得した値と⑧のDBの接続情報と㉗で計算した値を渡す。
 		//㉙ ㉔で宣言した変数をインクリメントで値を1増やす。
-		$dtb=getByid($book_id,$con);
+		$dtb=getByid($book_id,$pdo);
 		$total=$dtb['stock']-$_POST['stock'][$count];
-		$result=updateByid($book_id,$con,$total);
+		$result=updateByid($book_id,$pdo,$total);
 		$count++;
 	}
 
 	//㉚SESSIONの「success」に「入荷が完了しました」と設定する。
-	$_SESSION["success"]="入荷が完了しました";
+	$_SESSION["success"]="出荷が完了しました";
 	//㉛「header」関数を使用して在庫一覧画面へ遷移する。
 	header("Location:zaiko_ichiran.php");
 }
