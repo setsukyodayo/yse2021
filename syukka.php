@@ -112,7 +112,7 @@ function getId($id,$con){//,$total
 		// 	{
 		// 		echo $_SESSION["error"];
 		// 	}
-			if(empty($_SESSION["error"]))
+			if(!empty($_SESSION["error"]))
 			{
 				echo $_SESSION["error"];
 			}
