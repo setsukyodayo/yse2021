@@ -137,24 +137,25 @@ function getId($id,$con){//,$total
 				$book=getId($book_id,$pdo);
 				?>
 				<!-- <input type="hidden" value="<?php echo	"a"/* ⑰ ⑯の戻り値からidを取り出し、設定する */;?>" name="books[]"> -->
+				<input type="hidden" value="<?php echo $book['id'];?>" name="books[]">
 				<tr>
-				<tr id='book'>
+				<!-- <tr id='book'>
 				<td id='check'><input type='checkbox' name='books[]'value=<?=$book['id']?>></td>
 				<td id='id'><?=$book['id']?></td>
 				<td id='title'><?=$book['title']?></td>
 				<td id='author'><?=$book['author']?></td>
 				<td id='date'><?=$book['salesDate']?></td>
 				<td id='price'><?=$book['price']?></td>
-				<td id='stock'><?=$book['stock']?></td>
+				<td id='stock'><?=$book['stock']?></td> -->
 
 
 
-					<!-- <td><?php echo	"a"/* ⑱ ⑯の戻り値からidを取り出し、表示する */;?></td>
-					<td><?php echo	"a"/* ⑲ ⑯の戻り値からtitleを取り出し、表示する */;?></td>
-					<td><?php echo	"a"/* ⑳ ⑯の戻り値からauthorを取り出し、表示する */;?></td>
-					<td><?php echo	"a"/* ㉑ ⑯の戻り値からsalesDateを取り出し、表示する */;?></td>
-					<td><?php echo	"a"/* ㉒ ⑯の戻り値からpriceを取り出し、表示する */;?></td>
-					<td><?php echo	"a"/* ㉓ ⑯の戻り値からstockを取り出し、表示する */;?></td> -->
+				<td><?php echo	$book["id"];?></td>
+						<td><?php echo	$book["title"];?></td>
+						<td><?php echo	$book["author"];?></td>
+						<td><?php echo	$book["salesDate"];?></td>
+						<td><?php echo	$book["price"];?></td>
+						<td><?php echo	$book["stock"];?></td> 
 					<td><input type='text' name='stock[]' size='5' maxlength='11' required></td>
 				</tr>
 				<?php
