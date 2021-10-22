@@ -68,7 +68,7 @@ $count=0;
 
 
 //⑪POSTの「books」から値を取得し、変数に設定する。
-foreach($_POST('books')as $book_id){
+foreach($_POST['books']as $book_id){
 	/*
 	 * ⑫POSTの「stock」について⑩の変数の値を使用して値を取り出す。
 	 * 半角数字以外の文字が設定されていないかを「is_numeric」関数を使用して確認する。
@@ -88,7 +88,7 @@ foreach($_POST('books')as $book_id){
 	
 	//⑯「getByid」関数を呼び出し、変数に戻り値を入れる。その際引数に⑪の処理で取得した値と⑧のDBの接続情報を渡す。
 	//⑰ ⑯で取得した書籍の情報の「stock」と、⑩の変数を元にPOSTの「stock」から値を取り出して書籍情報の「stock」から値を引いた値を変数に保存する。
-	$dtb=getByid($book_id,$con);
+	$dtb=getByid($book_id,$pdo);
 	$total=$dtb['stock']-$_POST['stock'][$count];
 	
 
@@ -111,7 +111,7 @@ foreach($_POST('books')as $book_id){
  * ㉓POSTでこの画面のボタンの「add」に値が入ってるか確認する。
  * 値が入っている場合は中身に「ok」が設定されていることを確認する。
  */
-if(empty($_POST['add']=="ok")){
+if(isset($_POST['add'])){
 	//㉔書籍数をカウントするための変数を宣言し、値を0で初期化する。
 	//㉕POSTの「books」から値を取得し、変数に設定する。
 	$count=0;
@@ -162,7 +162,7 @@ if(empty($_POST['add']=="ok")){
 					//㉝POSTの「books」から値を取得し、変数に設定する。
 					foreach($_POST['books']as $book_id){
 						//㉞「getByid」関数を呼び出し、変数に戻り値を入れる。その際引数に㉜の処理で取得した値と⑧のDBの接続情報を渡す。
-							$get=getByid($books,$con);
+							$get=getByid($book_id,$pdo);
 					?>
 					<tr>
 						<td><?php echo	$get['title']/* ㉟ ㉞で取得した書籍情報からtitleを表示する。 */;?></td>
