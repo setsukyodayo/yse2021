@@ -1,11 +1,37 @@
+<?php
+//セッションを開始する
+session_start();
+//SESSIONの「login」フラグがfalseか判定する。「login」フラグがfalseの場合はif文の中に入る。
+if (empty($_SESSION['login'])){
+//SESSIONの「error2」に「ログインしてください」と設定する。
+$_SESSION['error2']=='ログインして下さい。';
+//ログイン画面へ遷移する。
+header('Location: login.php');
+}
 
+//⑤データベースへ接続し、接続情報を変数に保存する
+//⑥データベースで使用する文字コードを「UTF8」にする
+$db_name='zaiko2021_yse';
+$db_host='localhost';
+$db_port='3306';
+$db_password='2021zaiko';
+$db_user='zaiko2021_yse';
+$dsn="mysql:dbname={$db_name};host={$db_host};charset=utf8;port{$db_port}";
+try{
+	$pdo=new PDO($dsn,$db_user,$db_password);
+	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	$pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);
 
+}catch (PDOException $e){
+	echo "接続失敗:". $e->getMessage();
+	exit;
+}
+//書籍テーブルから書籍情報を取得するSQLを実行する。また実行結果を変数に保存する
+$sql="SELECT*FROM books";
+$books = $pdo->prepare('SELECT * FROM books');
+$books->execute();
 
-
-
-
-
-
+?>
 
 
 <!DOCTYPE html>
@@ -32,7 +58,6 @@
 
 	<form action="nyuka_kakunin.php" method="post">
 		<div id="pagebody">
-			<!-- エラーメッセージ -->
 			<div id="center">
 				<table>
 					<thead>
@@ -66,6 +91,7 @@
                         <td><input type='text' name='author[]' size='2' maxlength='11' required></td>
                         <td><input type='text' name='salesDate[]' size='3' maxlength='11' required></td>
                         <td><input type='text' name='price[]' size='4' maxlength='11' required></td>
+                        <td><input type='text' name='price[]' size='5' maxlength='11' required></td>
 						<td><input type='text' name='stock[]' size='6' maxlength='11' required></td>
 					</tr>
 
