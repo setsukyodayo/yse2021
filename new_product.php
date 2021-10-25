@@ -21,15 +21,18 @@ try{
 	$pdo=new PDO($dsn,$db_user,$db_password);
 	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	$pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);
-
+    // $id2 = $pdo->lastInsertId('id');
 }catch (PDOException $e){
 	echo "接続失敗:". $e->getMessage();
 	exit;
 }
 //書籍テーブルから書籍情報を取得するSQLを実行する。また実行結果を変数に保存する
-$sql="SELECT*FROM books";
+// $sql="SELECT max(id) FROM books";
+$sql="SELECT MAX(book_id)  FROM books";
 $books = $pdo->prepare('SELECT * FROM books');
+// $books2 = $pdo->prepare('SELECT  MAX(id) books');
 $books->execute();
+// SELECT  MAX(列名)  FROM  表名;
 
 ?>
 
@@ -72,16 +75,15 @@ $books->execute();
 						</tr>
 					</thead>
 					<?php 
-						// foreach($_POST['books'] as $book_id)//⑮POSTの「books」から一つずつ値を取り出し、変数に保存する。
-						// {	
-						// 	$book=getId($book_id,$pdo);// ⑯「getId」関数を呼び出し、変数に戻り値を入れる。その際引数に⑮の処理で取得した値と⑥のDBの接続情報を渡す。
-						// //⑰ ⑯の戻り値からidを取り出し、設定する・//
+						// foreach($_POST['books'] as $book_id)	// {	
+							// $book=getId($book_id,$pdo);
+						//⑰ ⑯の戻り値からidを取り出し、設定する・//
     					
 					?>
 					
 					<input type="hidden" value="<?php echo $book['id'];?>" name="books[]">
 					<tr>
-						<!-- <td><?php echo	$book["id"];?></td> -->
+						<td><?php echo	$book["id"];?></td>
 						<!-- <td><?php echo	$book["title"];?></td>
 						<td><?php echo	$book["author"];?></td>
 						<td><?php echo	$book["salesDate"];?></td>
