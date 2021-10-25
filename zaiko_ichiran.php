@@ -97,6 +97,10 @@ $books->execute();
 				<button type="submit" id="btn1" formmethod="POST" name="decision" value="3" formaction="nyuka.php">入荷</button>
 
 				<button type="submit" id="btn1" formmethod="POST" name="decision" value="4" formaction="syukka.php">出荷</button>
+
+				<button type="submit" id="btn1" formmethod="POST" name="decision" value="5" formaction="delete_product.php">新商品追加機能</button>
+
+				<button type="submit" id="btn1" formmethod="POST" name="decision" value="6" formaction="new_product.php">商品削除機能</button>
 			</div>
 			<!-- 中央表示 -->
 			<div id="center">
