@@ -65,7 +65,8 @@ foreach($_POST['books']as $book){
 	 * 半角数字以外の文字が設定されていないかを「is_numeric」関数を使用して確認する。
 	 * 半角数字以外の文字が入っていた場合はif文の中に入る。
 	*/
-	if (!is_numeric($_POST['stock'][$count])) {
+	$num = $_POST['stock'][$count];
+	if (!is_numeric($num)) {
 		//⑬SESSIONの「error」に「数値以外が入力されています」と設定する。
 		$_SESSION['error']="数値以外が入力されています";
 		//⑭「include」を使用して「nyuka.php」を呼び出す。
@@ -78,9 +79,10 @@ foreach($_POST['books']as $book){
 	//⑯「getByid」関数を呼び出し、変数に戻り値を入れる。その際引数に⑪の処理で取得した値と⑧のDBの接続情報を渡す。
 	$book_data = getByid($book,$pdo);
 	//⑰ ⑯で取得した書籍の情報の「stock」と、⑩の変数を元にPOSTの「stock」から値を取り出し、足した値を変数に保存する。
-	$total=$book_data['stock']+$_POST['stock'][$count];
+	$num_stook = $book_data['stock'];
+	$total_count=$num_stook+$num;
 	//⑱ ⑰の値が100を超えているか判定する。超えていた場合はif文の中に入る。
-	if($total>100){
+	if($total_count>100){
 		//⑲SESSIONの「error」に「最大在庫数を超える数は入力できません」と設定する。
 		$_SESSION['error']="最大在庫数を超える数は入力できません";
 		//⑳「include」を使用して「nyuka.php」を呼び出す。
@@ -106,10 +108,10 @@ if(isset($_POST['add'])){
 		//㉖「getByid」関数を呼び出し、変数に戻り値を入れる。その際引数に㉕の処理で取得した値と⑧のDBの接続情報を渡す。
 		$book_data = getByid($book_id,$pdo);
 		//㉗ ㉖で取得した書籍の情報の「stock」と、㉔の変数を元にPOSTの「stock」から値を取り出し、足した値を変数に保存する。
-		$total = $book_data["stock"] + $_POST["stock"][$count];
+		$total_count = $book_data["stock"] + $_POST["stock"][$count];
 		//㉘「updateByid」関数を呼び出す。その際に引数に㉕の処理で取得した値と⑧のDBの接続情報と㉗で計算した値を渡す。
 		// updateByid($book_id,$pdo,$total);
-		$result=updateByid($book_id,$pdo,$total);
+		$result=updateByid($book_id,$pdo,$total_count);
 		//㉙ ㉔で宣言した変数をインクリメントで値を1増やす。
 		$count++;
 	}
