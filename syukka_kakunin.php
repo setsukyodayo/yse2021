@@ -95,7 +95,7 @@ foreach($_POST['books']as $book_id){
 	//⑱ ⑰の値が0未満か判定する。0未満の場合はif文の中に入る。
 	if($total<0){
 		//⑲SESSIONの「error」に「出荷する個数が在庫数を超えています」と設定する。
-		$_SESSION['error2']="出荷する個数が在庫数を超えています";
+		$_SESSION['error']="出荷する個数が在庫数を超えています";
 		//⑳「include」を使用して「syukka.php」を呼び出す。
 		//㉑「exit」関数で処理を終了する。
 		include 'syukka.php';
@@ -132,6 +132,7 @@ if(isset($_POST['add'])){
 	if(!empty($result)){
 		$_SESSION["success"]="出荷が完了しました。";
 	//㉛「header」関数を使用して在庫一覧画面へ遷移する。
+		unset($_SESSION['error']);
 		header("Location:zaiko_ichiran.php");
 	}
 }
