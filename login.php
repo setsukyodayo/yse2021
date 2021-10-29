@@ -48,6 +48,7 @@ if (isset($name)) {
 		$_SESSION['name'] = $name;
 		$_SESSION['login'] = true;
 		//⑩在庫一覧画面へ遷移する
+		$_SESSION["account_name"] = $name;
 		header('Location: zaiko_ichiran.php');
 	}else{
 		//⑪名前もしくはパスワードが間違っていた場合は、「ユーザー名かパスワードが間違っています」という文言をメッセージを入れる変数に設定する
@@ -79,7 +80,7 @@ if (isset($_SESSION['error2'])) {
 		echo "<div id='error'>",$errormessage, "</div>";
 		
 		//⑯メッセージの変数に入っている値を表示する
-		echo "<div id='msg'>", $message, "</div>";
+		echo "<div id='msg'>","<font color = red>", $message,"</font>", "</div>";
 		?>
 		<form action="login.php" method="post" id="log">
 			<p>
