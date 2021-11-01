@@ -30,13 +30,15 @@ function updateByid($id,$con,$total){
 }
 
 //⑤SESSIONの「login」フラグがfalseか判定する。「login」フラグがfalseの場合はif文の中に入る。
-	if (empty($_SESSION['login'])||$_SESSION['login']==false){
-		//⑥SESSIONの「error2」に「ログインしてください」と設定する。
-		$_SESSION['error2']="ログインしてください。";
-		//⑦ログイン画面へ遷移する。
-		header("Location:login.php");
-		exit;
-	}
+if (empty($_SESSION['login'])||$_SESSION['login']==false){
+	//⑥SESSIONの「error2」に「ログインしてください」と設定する。
+	$_SESSION['error2']="ログインしてください。";
+	//⑦ログイン画面へ遷移する。
+	header("Location:login.php");
+	exit;
+}else{
+	header("Location:zaiko_ichiran.php");
+}
 
 //⑧データベースへ接続し、接続情報を変数に保存する
 //⑨データベースで使用する文字コードを「UTF8」にする
