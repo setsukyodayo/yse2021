@@ -41,8 +41,6 @@ function updateByid($id,$con,$total){
 		//⑦ログイン画面へ遷移する。
 		header("Location:login.php");
 		exit;
-	}else{
-		header("Location:zaiko_ichiran.php");
 	}
 
 
