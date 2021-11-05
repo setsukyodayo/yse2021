@@ -28,16 +28,20 @@ try{
 }
 //書籍テーブルから書籍情報を取得するSQLを実行する。また実行結果を変数に保存する
 // $sql="SELECT max(id) FROM books";
-// $sql="SELECT MAX(book_id)  FROM books";
+function maxId($pdo){
+$sql="SELECT MAX(id) AS id FROM books";
 // $sql = "select * from present Where id = (Select Max(id) From present)";
 // $stmt = $pdo->query( $sql );
 // $id_max = intval($pdo->query("SELECT max(id) FROM table_name)->fetchColumn())";
 // echo $id_max;
-$books = $pdo->prepare('SELECT * FROM books');
-$books2 = $pdo->prepare('SELECT MAX(id) FROM books');
-$books->execute();
+$row = $pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
+// $books2 = $pdo->prepare('SELECT MAX(id) FROM books');
+// $books2 = $pdo->prepare('SELECT MAX(id) FROM books');
+// $books->execute();
+return $row['id'];
 // SELECT  MAX(列名)  FROM  表名;
-
+}
+$id=maxId($pdo)+1;
 ?>
 
 
@@ -85,9 +89,9 @@ $books->execute();
     					
 					?>
 					
-					<input type="hidden" value="<?php echo $book['id'];?>" name="books[]">
+					<!-- <input type="hidden" value="<?php echo $book['id'];?>" name="books[]"> -->
 					<tr>
-						<td><?php echo	$book["id"];?></td>
+						<td><?php echo	$id;?></td>
 						<!-- <td><?php echo	$book["title"];?></td>
 						<td><?php echo	$book["author"];?></td>
 						<td><?php echo	$book["salesDate"];?></td>
