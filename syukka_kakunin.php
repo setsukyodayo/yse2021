@@ -41,6 +41,10 @@ function updateByid($id,$con,$total){
 		//⑦ログイン画面へ遷移する。
 		header("Location:login.php");
 		exit;
+
+	}else if($_POST["books"]==null){
+		header("Location:zaiko_ichiran.php");
+		exit;
 	}
 
 

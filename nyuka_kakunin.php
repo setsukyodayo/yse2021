@@ -36,6 +36,11 @@ if (empty($_SESSION['login'])||$_SESSION['login']==false){
 	//⑦ログイン画面へ遷移する。
 	header("Location:login.php");
 	exit;
+	
+}else if($_POST["books"]==null){
+	header("Location:zaiko_ichiran.php");
+	exit;
+	
 }
 
 //⑧データベースへ接続し、接続情報を変数に保存する
