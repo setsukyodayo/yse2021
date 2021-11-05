@@ -99,7 +99,7 @@ $id=maxId($pdo)+1;
 						<td><?php echo	$book["stock"];?></td>  -->
                         <td><input type='text' name='title[]' size='1' maxlength='11' required></td>
                         <td><input type='text' name='author[]' size='2' maxlength='11' required></td>
-                        <td><input type='text' name='salesDate[]' size='3' maxlength='11' required></td>
+                        <td><input type='date' name='salesDate[]' size='3' maxlength='11' required></td>
                         <td><input type='text' name='price[]' size='4' maxlength='11' required oninput="value = value.replace(/[^0-9]+/i,'');" /></td>
                         <td><input type='text' name='price[]' size='5' maxlength='11' required oninput="value = value.replace(/[^0-9]+/i,'');" /></td>
 						<td><input type='text' name='stock[]' size='6' maxlength='11' required oninput="value = value.replace(/[^0-9]+/i,'');" /></td>
