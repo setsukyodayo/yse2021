@@ -71,9 +71,26 @@ return $row['id'];
 					
 					<tr>
                         <td><input type='text' name='keyword[]' size='1' maxlength='11' required></td>
-                        <td><input type='text' name='salesDate[]' size='2' maxlength='11' required></td>
-                        <td><input type='text' name='itemPrice[]' size='3' maxlength='11' required></td>
-                        <td><input type='text' name='stock[]' size='4' maxlength='11' required></td>
+                        <td>     <select id="age" name="age">
+                            <?php $my_array = array("","1970年代", "1980年代", "1990年代", "2000年代", "2010年代", "2020年代");?>
+                            <?php foreach($my_array as $index => $value){?>
+                                    <option value="1"><?php echo $value;?></option>
+                                    <?php }?>
+                        </select></td>
+                        <td>
+                        <select id="age" name="age">
+                            <?php $my_array = array("","400円代", "500円代", "600円代", "700円代", "800円代", "900円代", "1000円代", "2000円代");?>
+                            <?php foreach($my_array as $index => $value){?>
+                                    <option value="1"><?php echo $value;?></option>
+                                    <?php }?>
+                        </select>
+                        </td>
+                        <td> <select id="age" name="age">
+                            <?php $my_array = array("","10冊未満", "20冊未満", "30冊未満", "40冊未満", "50冊未満", "50冊以上");?>
+                            <?php foreach($my_array as $index => $value){?>
+                                    <option value="1"><?php echo $value;?></option>
+                                    <?php }?>
+                        </select></td>
 					</tr>
 
 					<?php
